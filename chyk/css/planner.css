@@ -1,0 +1,911 @@
+/* ===== PLANNER STYLES - OPTIMIZED VERSION ===== */
+
+/* Planner Header */
+.planner-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-xl, 2rem);
+    padding: var(--space-lg, 1.5rem);
+    background: var(--bg-secondary, #f8f9fa);
+    border: 2px solid var(--border-color, #e5e5e5);
+    border-radius: var(--border-radius-lg, 12px);
+    box-shadow: var(--shadow-sm, 0 2px 4px rgba(0, 0, 0, 0.05));
+    flex-wrap: wrap;
+    gap: var(--space-lg, 1.5rem);
+}
+
+.planner-title-section {
+    flex: 1;
+    min-width: 200px;
+}
+
+.planner-controls {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md, 1rem);
+    align-items: flex-end;
+}
+
+/* Navigation */
+.planner-navigation {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md, 1rem);
+    background: var(--bg-primary, #ffffff);
+    padding: var(--space-sm, 0.75rem);
+    border-radius: var(--border-radius, 8px);
+    border: 1px solid var(--border-color, #e5e5e5);
+}
+
+.planner-nav-btn {
+    width: 44px;
+    height: 44px;
+    border: 2px solid var(--border-color, #e5e5e5);
+    background: var(--bg-primary, #ffffff);
+    border-radius: var(--border-radius, 8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-primary, #1f2937);
+    font-size: var(--text-lg, 1.125rem);
+    box-shadow: var(--shadow-sm, 0 2px 4px rgba(0, 0, 0, 0.05));
+}
+
+.planner-nav-btn:hover {
+    border-color: var(--primary, #c4a688);
+    color: var(--primary, #c4a688);
+    background: var(--bg-secondary, #f8f9fa);
+    transform: scale(1.05);
+    box-shadow: var(--shadow-md, 0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.planner-nav-btn:active {
+    transform: scale(0.98);
+}
+
+.current-period {
+    font-size: var(--text-xl, 1.25rem);
+    font-weight: 600;
+    color: var(--primary, #c4a688);
+    min-width: 200px;
+    text-align: center;
+    padding: 0 var(--space-md, 1rem);
+}
+
+/* View Toggle */
+.view-toggle {
+    display: flex;
+    background: var(--bg-primary, #ffffff);
+    border: 2px solid var(--border-color, #e5e5e5);
+    border-radius: var(--border-radius, 8px);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm, 0 2px 4px rgba(0, 0, 0, 0.05));
+}
+
+.planner-view-toggle {
+    padding: var(--space-sm, 0.75rem) var(--space-md, 1rem);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-secondary, #6b7280);
+    font-weight: 500;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs, 0.5rem);
+    min-height: var(--touch-target-min, 44px);
+}
+
+.planner-view-toggle.active {
+    background: var(--primary, #c4a688);
+    color: var(--text-inverse, #ffffff);
+}
+
+.planner-view-toggle:hover:not(.active) {
+    background: var(--bg-secondary, #f8f9fa);
+    color: var(--primary, #c4a688);
+}
+
+/* Main Layout */
+.planner-layout {
+    display: flex;
+    gap: var(--space-xl, 2rem);
+    min-height: 600px;
+    border-radius: var(--border-radius-lg, 12px);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg, 0 10px 25px rgba(0, 0, 0, 0.1));
+    background: var(--bg-primary, #ffffff);
+    border: 2px solid var(--border-color, #e5e5e5);
+}
+
+.planner-main {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-primary, #ffffff);
+    min-width: 0;
+    padding: var(--space-lg, 1.5rem);
+}
+
+/* Calendar Views */
+.weekly-view,
+.monthly-view {
+    display: none;
+    flex: 1;
+}
+
+.weekly-view.active,
+.monthly-view.active {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Calendar Headers */
+.week-header,
+.month-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background: var(--border-color, #e5e5e5);
+    border-radius: var(--border-radius, 8px);
+    overflow: hidden;
+    margin-bottom: 1px;
+}
+
+.week-day-header,
+.month-day-header {
+    background: var(--bg-secondary, #f8f9fa);
+    padding: var(--space-md, 1rem);
+    text-align: center;
+    font-weight: 600;
+    color: var(--text-primary, #1f2937);
+    font-size: var(--text-sm, 0.875rem);
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Calendar Grids */
+.week-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background: var(--border-color, #e5e5e5);
+    border-radius: var(--border-radius, 8px);
+    overflow: hidden;
+    flex: 1;
+    min-height: 400px;
+}
+
+.month-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 1px;
+    background: var(--border-color, #e5e5e5);
+    border-radius: var(--border-radius, 8px);
+    overflow: hidden;
+    flex: 1;
+    min-height: 500px;
+}
+
+/* Day Cells */
+.planner-day {
+    background: var(--bg-primary, #ffffff);
+    padding: var(--space-sm, 0.75rem);
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    border: 2px solid transparent;
+    min-height: 120px;
+}
+
+.planner-day:hover {
+    background: var(--bg-secondary, #f8f9fa);
+    border-color: var(--border-color-light, #f3f4f6);
+}
+
+.planner-day:focus {
+    outline: none;
+    border-color: var(--primary, #c4a688);
+    box-shadow: 0 0 0 3px rgba(196, 166, 136, 0.2);
+}
+
+.planner-day.today {
+    background: rgba(196, 166, 136, 0.1);
+    border-color: var(--primary, #c4a688);
+    box-shadow: inset 0 0 0 2px rgba(196, 166, 136, 0.3);
+}
+
+.planner-day.other-month {
+    background: var(--bg-muted, #f9fafb);
+    opacity: 0.6;
+    color: var(--text-muted, #9ca3af);
+}
+
+.planner-day.drop-target {
+    background: var(--canvas-drop-target, #f0f9ff);
+    border-color: var(--primary, #c4a688);
+    border-style: dashed;
+    border-width: 2px;
+    box-shadow: inset 0 0 0 2px var(--primary, #c4a688);
+}
+
+.planner-day.drop-target::before {
+    content: "Drop outfit here";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--primary, #c4a688);
+    color: var(--text-inverse, #ffffff);
+    padding: var(--space-xs, 0.5rem) var(--space-sm, 0.75rem);
+    border-radius: var(--border-radius, 8px);
+    font-size: var(--text-xs, 0.75rem);
+    font-weight: 600;
+    pointer-events: none;
+    z-index: 5;
+    white-space: nowrap;
+}
+
+/* Day Header */
+.planner-day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-sm, 0.75rem);
+    padding-bottom: var(--space-xs, 0.5rem);
+    border-bottom: 1px solid var(--border-color-light, #f3f4f6);
+    flex-shrink: 0;
+}
+
+.planner-day-number {
+    font-weight: 600;
+    font-size: var(--text-lg, 1.125rem);
+    color: var(--text-primary, #1f2937);
+    min-width: 24px;
+    text-align: center;
+}
+
+.planner-day.today .planner-day-number {
+    color: var(--primary, #c4a688);
+    background: var(--bg-primary, #ffffff);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    box-shadow: var(--shadow-sm, 0 2px 4px rgba(0, 0, 0, 0.05));
+}
+
+.planner-day-outfit {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs, 0.5rem);
+    min-height: 0;
+}
+
+/* Outfit Preview */
+.planner-outfit-preview {
+    width: 100%;
+    background: var(--bg-secondary, #f8f9fa);
+    border: 2px solid var(--border-color, #e5e5e5);
+    border-radius: var(--border-radius, 8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    overflow: hidden;
+    position: relative;
+    min-height: 80px;
+    box-shadow: var(--shadow-sm, 0 2px 4px rgba(0, 0, 0, 0.05));
+}
+
+.planner-outfit-preview:hover {
+    border-color: var(--primary, #c4a688);
+    box-shadow: var(--shadow-md, 0 4px 8px rgba(0, 0, 0, 0.1));
+    transform: scale(1.02);
+    background: var(--bg-primary, #ffffff);
+}
+
+.planner-outfit-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: calc(var(--border-radius, 8px) - 2px);
+}
+
+.planner-outfit-preview i {
+    font-size: var(--text-2xl, 1.5rem);
+    color: var(--primary, #c4a688);
+    opacity: 0.7;
+}
+
+.planner-outfit-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(26, 23, 20, 0.85);
+    color: var(--text-inverse, #ffffff);
+    padding: var(--space-xs, 0.5rem) var(--space-sm, 0.75rem);
+    font-size: var(--text-xs, 0.75rem);
+    text-align: center;
+    backdrop-filter: blur(4px);
+    font-weight: 500;
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.planner-outfit-actions {
+    position: absolute;
+    top: var(--space-xs, 0.5rem);
+    right: var(--space-xs, 0.5rem);
+    display: none;
+    gap: var(--space-xs, 0.5rem);
+    z-index: 10;
+}
+
+.planner-outfit-preview:hover .planner-outfit-actions {
+    display: flex;
+}
+
+.planner-outfit-action {
+    width: 28px;
+    height: 28px;
+    background: var(--bg-primary, #ffffff);
+    border: 1px solid var(--border-color, #e5e5e5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: var(--text-xs, 0.75rem);
+    color: var(--text-primary, #1f2937);
+    box-shadow: var(--shadow-sm, 0 2px 4px rgba(0, 0, 0, 0.05));
+    backdrop-filter: blur(10px);
+}
+
+.planner-outfit-action:hover {
+    background: var(--primary, #c4a688);
+    color: var(--text-inverse, #ffffff);
+    border-color: var(--primary, #c4a688);
+    transform: scale(1.1);
+    box-shadow: var(--shadow-md, 0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.planner-outfit-placeholder {
+    text-align: center;
+    color: var(--text-muted, #9ca3af);
+    font-size: var(--text-xs, 0.75rem);
+    padding: var(--space-md, 1rem);
+    border: 2px dashed var(--border-color, #e5e5e5);
+    border-radius: var(--border-radius, 8px);
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+    background: var(--bg-tertiary, #fafafa);
+}
+
+.planner-day:hover .planner-outfit-placeholder {
+    border-color: var(--primary, #c4a688);
+    color: var(--primary, #c4a688);
+    background: var(--bg-secondary, #f8f9fa);
+}
+
+/* Saved Outfits Sidebar */
+.saved-outfits-sidebar {
+    flex: 1;
+    background: var(--bg-secondary, #f8f9fa);
+    border-left: 2px solid var(--border-color, #e5e5e5);
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+    min-width: 280px;
+    max-width: 350px;
+}
+
+.saved-outfits-header {
+    padding: var(--space-lg, 1.5rem);
+    border-bottom: 2px solid var(--border-color, #e5e5e5);
+    background: var(--bg-secondary, #f8f9fa);
+    flex-shrink: 0;
+}
+
+.saved-outfits-title {
+    margin-bottom: var(--space-sm, 0.75rem);
+    font-size: var(--text-lg, 1.125rem);
+    color: var(--primary, #c4a688);
+    font-weight: 600;
+}
+
+.saved-outfits-subtitle {
+    font-size: var(--text-sm, 0.875rem);
+    color: var(--text-secondary, #6b7280);
+    line-height: 1.4;
+}
+
+/* Search and Filters */
+.saved-outfits-search-container {
+    padding: var(--space-md, 1rem);
+    border-bottom: 1px solid var(--border-color, #e5e5e5);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.saved-outfits-search-container .search-icon {
+    position: absolute;
+    left: calc(var(--space-md, 1rem) + var(--space-sm, 0.75rem));
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted, #9ca3af);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.saved-outfits-search-container .search-input {
+    width: 100%;
+    padding: var(--space-sm, 0.75rem) var(--space-sm, 0.75rem) var(--space-sm, 0.75rem) 2.5rem;
+    border: 2px solid var(--border-color, #e5e5e5);
+    border-radius: var(--border-radius, 8px);
+    font-size: var(--text-sm, 0.875rem);
+    transition: all 0.2s ease;
+    font-family: inherit;
+    background: var(--bg-primary, #ffffff);
+    min-height: 44px;
+}
+
+.saved-outfits-search-container .search-input:focus {
+    outline: none;
+    border-color: var(--primary, #c4a688);
+    box-shadow: 0 0 0 3px rgba(196, 166, 136, 0.2);
+}
+
+.outfit-category-filters {
+    padding: var(--space-md, 1rem);
+    border-bottom: 1px solid var(--border-color, #e5e5e5);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs, 0.5rem);
+    flex-shrink: 0;
+}
+
+.outfit-category-filter {
+    padding: var(--space-xs, 0.5rem) var(--space-sm, 0.75rem);
+    border: 1px solid var(--border-color, #e5e5e5);
+    background: var(--bg-primary, #ffffff);
+    color: var(--text-secondary, #6b7280);
+    border-radius: var(--border-radius, 8px);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: var(--text-xs, 0.75rem);
+    font-family: inherit;
+    min-height: 32px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.outfit-category-filter:hover {
+    border-color: var(--primary, #c4a688);
+    color: var(--primary, #c4a688);
+    background: var(--bg-secondary, #f8f9fa);
+}
+
+.outfit-category-filter.active {
+    background: var(--primary, #c4a688);
+    color: var(--text-inverse, #ffffff);
+    border-color: var(--primary, #c4a688);
+    box-shadow: var(--shadow-sm, 0 2px 4px rgba(0, 0, 0, 0.05));
+}
+
+/* Saved Outfits List */
+.saved-outfits-list {
+    flex: 1;
+    padding: var(--space-md, 1rem);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md, 1rem);
+    min-height: 0;
+}
+
+.saved-outfits-list:empty::after {
+    content: "👗 No saved outfits yet. Create outfits in the Outfit Builder to plan your week!";
+    text-align: center;
+    padding: var(--space-xl, 2rem);
+    color: var(--text-muted, #9ca3af);
+    background: var(--bg-primary, #ffffff);
+    border: 2px dashed var(--border-color, #e5e5e5);
+    border-radius: var(--border-radius, 8px);
+    font-size: var(--text-sm, 0.875rem);
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 120px;
+}
+
+/* Saved Outfit Items */
+.saved-outfit-item {
+    background: var(--bg-primary, #ffffff);
+    border: 2px solid var(--border-color, #e5e5e5);
+    border-radius: var(--border-radius, 8px);
+    padding: var(--space-md, 1rem);
+    cursor: grab;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm, 0 2px 4px rgba(0, 0, 0, 0.05));
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm, 0.75rem);
+    user-select: none;
+}
+
+.saved-outfit-item:hover {
+    border-color: var(--primary, #c4a688);
+    box-shadow: var(--shadow-md, 0 4px 8px rgba(0, 0, 0, 0.1));
+    transform: translateY(-2px);
+    background: var(--bg-secondary, #f8f9fa);
+}
+
+.saved-outfit-item:active {
+    cursor: grabbing;
+    transform: scale(0.98);
+}
+
+.saved-outfit-item.dragging {
+    opacity: 0.7;
+    transform: rotate(3deg) scale(1.02);
+    z-index: 100;
+    box-shadow: var(--shadow-xl, 0 20px 50px rgba(0, 0, 0, 0.2));
+}
+
+.saved-outfit-preview {
+    width: 100%;
+    height: 100px;
+    background: var(--bg-secondary, #f8f9fa);
+    border: 1px solid var(--border-color, #e5e5e5);
+    border-radius: var(--border-radius, 8px);
+    margin-bottom: var(--space-sm, 0.75rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted, #9ca3af);
+    font-size: var(--text-sm, 0.875rem);
+    overflow: hidden;
+    position: relative;
+}
+
+.saved-outfit-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+}
+
+.saved-outfit-preview i {
+    font-size: var(--text-2xl, 1.5rem);
+    color: var(--primary, #c4a688);
+    opacity: 0.7;
+}
+
+.saved-outfit-info {
+    text-align: center;
+}
+
+.saved-outfit-name {
+    font-weight: 600;
+    margin-bottom: var(--space-xs, 0.5rem);
+    color: var(--text-primary, #1f2937);
+    font-size: var(--text-sm, 0.875rem);
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.saved-outfit-category {
+    font-size: var(--text-xs, 0.75rem);
+    color: var(--text-primary, #1f2937);
+    background: var(--accent, #f3e8ff);
+    padding: var(--space-xs, 0.5rem) var(--space-sm, 0.75rem);
+    border-radius: var(--border-radius, 8px);
+    display: inline-block;
+    font-weight: 500;
+    margin-bottom: var(--space-xs, 0.5rem);
+}
+
+.saved-outfit-notes {
+    font-size: var(--text-xs, 0.75rem);
+    color: var(--text-muted, #9ca3af);
+    margin-top: var(--space-xs, 0.5rem);
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Empty State */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-xl, 2rem);
+    color: var(--text-muted, #9ca3af);
+    background: var(--bg-primary, #ffffff);
+    border-radius: var(--border-radius, 8px);
+    border: 2px dashed var(--border-color, #e5e5e5);
+    min-height: 150px;
+}
+
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: var(--space-md, 1rem);
+    color: var(--primary, #c4a688);
+    opacity: 0.5;
+}
+
+.empty-state p {
+    font-size: var(--text-base, 1rem);
+    margin-bottom: var(--space-sm, 0.75rem);
+    color: var(--text-primary, #1f2937);
+    font-weight: 500;
+}
+
+.empty-state p:last-child {
+    margin-bottom: var(--space-md, 1rem);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .planner-layout {
+        flex-direction: column;
+        height: auto;
+        min-height: 600px;
+    }
+    
+    .saved-outfits-sidebar {
+        order: -1;
+        max-height: 350px;
+        min-width: unset;
+        max-width: unset;
+        border-left: none;
+        border-bottom: 2px solid var(--border-color, #e5e5e5);
+    }
+    
+    .planner-main {
+        order: 1;
+        flex: 1;
+    }
+    
+    .planner-header {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+    
+    .planner-controls {
+        align-items: center;
+    }
+    
+    .planner-navigation {
+        justify-content: center;
+    }
+    
+    .month-grid {
+        min-height: 400px;
+    }
+    
+    .planner-day {
+        min-height: 100px;
+        padding: var(--space-xs, 0.5rem);
+    }
+    
+    .planner-outfit-preview {
+        min-height: 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    .planner-header {
+        padding: var(--space-md, 1rem);
+        gap: var(--space-md, 1rem);
+    }
+    
+    .planner-controls {
+        gap: var(--space-sm, 0.75rem);
+    }
+    
+    .planner-navigation {
+        gap: var(--space-sm, 0.75rem);
+    }
+    
+    .current-period {
+        min-width: 150px;
+        font-size: var(--text-lg, 1.125rem);
+    }
+    
+    .planner-nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: var(--text-base, 1rem);
+    }
+    
+    .view-toggle {
+        width: 100%;
+    }
+    
+    .planner-view-toggle {
+        flex: 1;
+        justify-content: center;
+    }
+    
+    .month-grid {
+        grid-template-rows: repeat(6, minmax(80px, 1fr));
+        min-height: 300px;
+    }
+    
+    .week-grid {
+        min-height: 200px;
+    }
+    
+    .planner-day {
+        min-height: 80px;
+        padding: var(--space-xs, 0.5rem);
+    }
+    
+    .planner-day-number {
+        font-size: var(--text-base, 1rem);
+    }
+    
+    .planner-outfit-preview {
+        min-height: 40px;
+    }
+    
+    .planner-outfit-info {
+        font-size: 10px;
+        padding: 2px 4px;
+    }
+    
+    .planner-outfit-action {
+        width: 24px;
+        height: 24px;
+        font-size: 10px;
+    }
+    
+    .saved-outfits-sidebar {
+        max-height: 300px;
+    }
+    
+    .saved-outfit-preview {
+        height: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .month-grid {
+        display: flex;
+        flex-direction: column;
+        min-height: auto;
+    }
+    
+    .month-header {
+        display: none;
+    }
+    
+    .planner-day {
+        flex-direction: row;
+        align-items: center;
+        gap: var(--space-sm, 0.75rem);
+        min-height: 60px;
+        border-bottom: 1px solid var(--border-color, #e5e5e5);
+        border-radius: 0;
+    }
+    
+    .planner-day:last-child {
+        border-bottom: none;
+    }
+    
+    .planner-day-header {
+        flex-direction: column;
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+        min-width: 60px;
+        text-align: center;
+        flex-shrink: 0;
+    }
+    
+    .planner-day-outfit {
+        flex: 1;
+    }
+    
+    .planner-outfit-preview {
+        min-height: 40px;
+    }
+    
+    .planner-day.today .planner-day-number {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .saved-outfits-sidebar {
+        max-height: 200px;
+    }
+    
+    .saved-outfit-preview {
+        height: 60px;
+    }
+}
+
+/* Accessibility */
+.planner-day:focus-visible,
+.saved-outfit-item:focus-visible {
+    outline: 3px solid var(--primary, #c4a688);
+    outline-offset: 2px;
+}
+
+.planner-outfit-action:focus-visible {
+    outline: 2px solid var(--primary, #c4a688);
+    outline-offset: 1px;
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .planner-day {
+        border-width: 2px;
+        border-color: #000000;
+    }
+    
+    .planner-outfit-preview {
+        border-width: 3px;
+        border-color: #000000;
+    }
+    
+    .saved-outfit-item {
+        border-width: 2px;
+        border-color: #000000;
+    }
+    
+    .planner-day.today {
+        background: #FFFF00;
+        color: #000000;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .planner-day,
+    .saved-outfit-item,
+    .planner-outfit-preview,
+    .planner-nav-btn {
+        transition: none;
+    }
+    
+    .planner-day:hover,
+    .saved-outfit-item:hover,
+    .saved-outfit-item.dragging {
+        transform: none;
+    }
+}

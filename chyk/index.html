@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHYK - Smart Virtual Closet</title>
+    <meta name="description" content="CHYK - Organize, Style & Plan Your Wardrobe with Smart Virtual Closet Technology">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- External Resources -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/canvas.css">
+    <link rel="stylesheet" href="css/planner.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- Meta Tags for SEO -->
+    <meta property="og:title" content="CHYK - Smart Virtual Closet">
+    <meta property="og:description" content="Organize, Style & Plan Your Wardrobe with AI-Powered Virtual Closet Technology">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay hidden" aria-hidden="true">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h2>CHYK</h2>
+            <p>Loading your virtual closet...</p>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <!-- Logo -->
+            <div class="nav-logo">
+                <a href="#home" data-page="home" class="logo-link">
+                    <i class="fas fa-closet" aria-hidden="true"></i>
+                    <span class="logo-text serif">CHYK</span>
+                </a>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <div class="nav-links" id="nav-links">
+                <a href="#home" data-page="home" class="nav-link active">Home</a>
+                <a href="#about" data-page="about" class="nav-link">About</a>
+                <a href="#features" data-page="features" class="nav-link">Features</a>
+                <a href="#community" data-page="community" class="nav-link">Community</a>
+                <a href="#contact" data-page="contact" class="nav-link">Contact</a>
+            </div>
+
+            <!-- Auth Navigation -->
+            <div class="nav-auth">
+                <!-- Guest Navigation -->
+                <div id="guest-nav" class="auth-section">
+                    <button class="btn btn-outline" onclick="CHYK.showModal('login')">
+                        <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
+                        <span>Login</span>
+                    </button>
+                    <button class="btn btn-primary" onclick="CHYK.showModal('signup')">
+                        <i class="fas fa-user-plus" aria-hidden="true"></i>
+                        <span>Sign Up</span>
+                    </button>
+                </div>
+
+                <!-- User Navigation -->
+                <div id="user-nav" class="auth-section hidden">
+                    <button class="btn btn-outline" data-page="dashboard">
+                        <i class="fas fa-tachometer-alt" aria-hidden="true"></i>
+                        <span>Dashboard</span>
+                    </button>
+                    <div class="user-menu">
+                        <button class="user-menu-toggle" id="user-menu-toggle">
+                            <i class="fas fa-user-circle" aria-hidden="true"></i>
+                            <span id="user-email">User</span>
+                            <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                        </button>
+                        <div class="user-dropdown" id="user-dropdown">
+                            <a href="#settings" data-page="settings" class="dropdown-item">
+                                <i class="fas fa-cog" aria-hidden="true"></i>
+                                <span>Settings</span>
+                            </a>
+                            <button onclick="CHYK.logout()" class="dropdown-item">
+                                <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+                                <span>Logout</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+            <div class="mobile-nav-content">
+                <a href="#home" data-page="home" class="nav-link">Home</a>
+                <a href="#about" data-page="about" class="nav-link">About</a>
+                <a href="#features" data-page="features" class="nav-link">Features</a>
+                <a href="#community" data-page="community" class="nav-link">Community</a>
+                <a href="#contact" data-page="contact" class="nav-link">Contact</a>
+                <div class="mobile-auth">
+                    <button class="btn btn-outline" onclick="CHYK.showModal('login')">Login</button>
+                    <button class="btn btn-primary" onclick="CHYK.showModal('signup')">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Home Page -->
+        <div id="home-page" class="page active">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-container">
+                    <div class="hero-content">
+                        <h1 class="hero-title serif">
+                            Your Smart Virtual Closet
+                        </h1>
+                        <p class="hero-subtitle">
+                            Organize, style, and plan your wardrobe with AI-powered technology. 
+                            Never wonder what to wear again.
+                        </p>
+                        <div class="hero-actions">
+                            <div id="guest-actions">
+                                <button class="btn btn-primary btn-lg" onclick="CHYK.showModal('signup')">
+                                    <i class="fas fa-sparkles" aria-hidden="true"></i>
+                                    <span>Start Your Journey</span>
+                                </button>
+                                <button class="btn btn-outline btn-lg" data-page="features">
+                                    <i class="fas fa-play-circle" aria-hidden="true"></i>
+                                    <span>See How It Works</span>
+                                </button>
+                            </div>
+                            <div id="user-actions" class="hidden">
+                                <button class="btn btn-primary btn-lg" data-page="dashboard">
+                                    <i class="fas fa-tachometer-alt" aria-hidden="true"></i>
+                                    <span>Go to Dashboard</span>
+                                </button>
+                                <button class="btn btn-outline btn-lg" data-page="features">
+                                    <i class="fas fa-info-circle" aria-hidden="true"></i>
+                                    <span>Learn More</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <div class="hero-image">
+                            <i class="fas fa-shirt hero-icon" aria-hidden="true"></i>
+                            <div class="floating-elements">
+                                <div class="floating-item item-1">
+                                    <i class="fas fa-tshirt" aria-hidden="true"></i>
+                                </div>
+                                <div class="floating-item item-2">
+                                    <i class="fas fa-shoe-prints" aria-hidden="true"></i>
+                                </div>
+                                <div class="floating-item item-3">
+                                    <i class="fas fa-gem" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Preview -->
+            <section class="features-preview">
+                <div class="container">
+                    <h2 class="section-title serif">Powerful Features</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-camera" aria-hidden="true"></i>
+                            </div>
+                            <h3>Smart Upload</h3>
+                            <p>Upload photos and let AI categorize and organize your clothing automatically.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-palette" aria-hidden="true"></i>
+                            </div>
+                            <h3>Outfit Builder</h3>
+                            <p>Create and save stunning outfit combinations with our visual drag-and-drop interface.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-calendar-week" aria-hidden="true"></i>
+                            </div>
+                            <h3>Weekly Planner</h3>
+                            <p>Plan your outfits for the week ahead and never run out of ideas.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- About Page -->
+        <div id="about-page" class="page" style="display: none;">
+            <section class="page-content">
+                <div class="container">
+                    <h1 class="page-title serif">About CHYK</h1>
+                    <div class="content-grid">
+                        <div class="content-main">
+                            <h2>Revolutionizing Wardrobe Management</h2>
+                            <p>CHYK (Choose Your Killer) is more than just a closet organizer – it's your personal style assistant that helps you make the most of your wardrobe.</p>
+                            
+                            <h3>Our Mission</h3>
+                            <p>We believe everyone deserves to feel confident and stylish every day. Our mission is to simplify wardrobe management and help you discover new ways to express your personal style.</p>
+                            
+                            <h3>How It Started</h3>
+                            <p>Born from the daily struggle of "what to wear," CHYK combines cutting-edge technology with fashion expertise to create a seamless wardrobe experience.</p>
+                        </div>
+                        <div class="content-sidebar">
+                            <div class="stats-card">
+                                <h3>Join Thousands of Users</h3>
+                                <div class="stat">
+                                    <span class="stat-number">10K+</span>
+                                    <span class="stat-label">Active Users</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">50K+</span>
+                                    <span class="stat-label">Outfits Created</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">95%</span>
+                                    <span class="stat-label">User Satisfaction</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Features Page -->
+        <div id="features-page" class="page" style="display: none;">
+            <section class="page-content">
+                <div class="container">
+                    <h1 class="page-title serif">Features</h1>
+                    <div class="features-detailed">
+                        <div class="feature-section">
+                            <div class="feature-content">
+                                <h2>Smart Closet Organization</h2>
+                                <p>Upload photos of your clothing and let our AI automatically categorize and tag them. Search by color, style, season, or any custom tags you create.</p>
+                                <ul class="feature-list">
+                                    <li>Automatic categorization</li>
+                                    <li>Smart tagging system</li>
+                                    <li>Advanced search and filters</li>
+                                    <li>Favorites and collections</li>
+                                </ul>
+                            </div>
+                            <div class="feature-visual">
+                                <i class="fas fa-tshirt feature-icon-large" aria-hidden="true"></i>
+                            </div>
+                        </div>
+
+                        <div class="feature-section reverse">
+                            <div class="feature-visual">
+                                <i class="fas fa-magic feature-icon-large" aria-hidden="true"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h2>Outfit Builder</h2>
+                                <p>Create stunning outfit combinations with our visual drag-and-drop interface. Mix and match items, save your favorites, and get inspiration for new looks.</p>
+                                <ul class="feature-list">
+                                    <li>Visual outfit composition</li>
+                                    <li>Save and organize outfits</li>
+                                    <li>Share with friends</li>
+                                    <li>Background removal technology</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="feature-section">
+                            <div class="feature-content">
+                                <h2>Weekly Planner</h2>
+                                <p>Plan your outfits for the week ahead with our intuitive calendar interface. Set reminders, prepare for special events, and never run out of ideas.</p>
+                                <ul class="feature-list">
+                                    <li>Weekly and monthly views</li>
+                                    <li>Drag-and-drop planning</li>
+                                    <li>Outfit reminders</li>
+                                    <li>Weather integration</li>
+                                </ul>
+                            </div>
+                            <div class="feature-visual">
+                                <i class="fas fa-calendar-alt feature-icon-large" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Community Page -->
+        <div id="community-page" class="page" style="display: none;">
+            <section class="page-content">
+                <div class="container">
+                    <h1 class="page-title serif">Community</h1>
+                    <div class="community-content">
+                        <div class="community-intro">
+                            <h2>Join the CHYK Style Community</h2>
+                            <p>Connect with fashion enthusiasts, share your style, and get inspired by others. Our community is built on creativity, positivity, and personal expression.</p>
+                        </div>
+
+                        <div class="community-features">
+                            <div class="community-card">
+                                <i class="fas fa-users" aria-hidden="true"></i>
+                                <h3>Style Sharing</h3>
+                                <p>Share your favorite outfits and get feedback from the community.</p>
+                            </div>
+                            <div class="community-card">
+                                <i class="fas fa-lightbulb" aria-hidden="true"></i>
+                                <h3>Style Challenges</h3>
+                                <p>Participate in weekly style challenges and discover new combinations.</p>
+                            </div>
+                            <div class="community-card">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <h3>Expert Tips</h3>
+                                <p>Learn from fashion experts and style influencers in our community.</p>
+                            </div>
+                        </div>
+
+                        <div class="cta-section">
+                            <h2>Ready to Join?</h2>
+                            <p>Sign up today and become part of our growing style community.</p>
+                            <button class="btn btn-primary btn-lg" onclick="CHYK.showModal('signup')">
+                                <i class="fas fa-user-plus" aria-hidden="true"></i>
+                                <span>Join Now</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Contact Page -->
+        <div id="contact-page" class="page" style="display: none;">
+            <section class="page-content">
+                <div class="container">
+                    <h1 class="page-title serif">Contact Us</h1>
+                    <div class="contact-content">
+                        <div class="contact-info">
+                            <h2>Get in Touch</h2>
+                            <p>Have questions, feedback, or suggestions? We'd love to hear from you!</p>
+                            
+                            <div class="contact-methods">
+                                <div class="contact-method">
+                                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                                    <div>
+                                        <h3>Email</h3>
+                                        <p>hello@chyk.com</p>
+                                    </div>
+                                </div>
+                                <div class="contact-method">
+                                    <i class="fas fa-comments" aria-hidden="true"></i>
+                                    <div>
+                                        <h3>Live Chat</h3>
+                                        <p>Available 9 AM - 6 PM PST</p>
+                                    </div>
+                                </div>
+                                <div class="contact-method">
+                                    <i class="fas fa-question-circle" aria-hidden="true"></i>
+                                    <div>
+                                        <h3>Support</h3>
+                                        <p>Visit our Help Center</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-form-container">
+                            <form id="contact-form" class="contact-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="contact-name">Name</label>
+                                        <input type="text" id="contact-name" name="name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="contact-email">Email</label>
+                                        <input type="email" id="contact-email" name="email" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact-subject">Subject</label>
+                                    <select id="contact-subject" name="subject" required>
+                                        <option value="">Select a subject</option>
+                                        <option value="general">General Inquiry</option>
+                                        <option value="support">Technical Support</option>
+                                        <option value="feedback">Feedback</option>
+                                        <option value="feature">Feature Request</option>
+                                        <option value="bug">Bug Report</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact-message">Message</label>
+                                    <textarea id="contact-message" name="message" rows="6" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                                    <span>Send Message</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Dashboard -->
+        <div id="dashboard" class="dashboard" style="display: none;">
+            <!-- Dashboard Sidebar -->
+            <div class="dashboard-sidebar">
+                <div class="sidebar-header">
+                    <div class="logo">
+                        <i class="fas fa-closet" aria-hidden="true"></i>
+                        <span class="serif">CHYK</span>
+                    </div>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <a href="#" data-section="closet" class="nav-item active">
+                        <i class="fas fa-tshirt" aria-hidden="true"></i>
+                        <span>My Closet</span>
+                    </a>
+                    <a href="#" data-section="builder" class="nav-item">
+                        <i class="fas fa-palette" aria-hidden="true"></i>
+                        <span>Outfit Builder</span>
+                    </a>
+                    <a href="#" data-section="planner" class="nav-item">
+                        <i class="fas fa-calendar-week" aria-hidden="true"></i>
+                        <span>Weekly Planner</span>
+                    </a>
+                    <a href="#" data-section="outfits" class="nav-item">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <span>Saved Outfits</span>
+                    </a>
+                    <a href="#" data-section="favorites" class="nav-item">
+                        <i class="fas fa-heart" aria-hidden="true"></i>
+                        <span>Favorites</span>
+                    </a>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <button class="btn btn-outline btn-sm" data-page="settings">
+                        <i class="fas fa-cog" aria-hidden="true"></i>
+                        <span>Settings</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <!-- Closet Section -->
+                <div id="closet-section" class="section active">
+                    <div class="section-header">
+                        <div class="section-title-area">
+                            <h2 class="content-title">
+                                <i class="fas fa-tshirt" aria-hidden="true"></i>
+                                My Closet
+                            </h2>
+                            <p class="content-subtitle">Organize and manage your wardrobe items</p>
+                        </div>
+                        <div class="section-actions">
+                            <button class="btn btn-primary" onclick="CHYK.showModal('upload')">
+                                <i class="fas fa-plus" aria-hidden="true"></i>
+                                <span>Add Item</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Search and Filters -->
+                    <div class="content-filters">
+                        <div class="search-container">
+                            <i class="fas fa-search search-icon" aria-hidden="true"></i>
+                            <input type="text" id="search-input" class="search-input" placeholder="Search your closet...">
+                        </div>
+                        
+                        <div class="category-filters">
+                            <button class="category-filter active" data-category="all" onclick="CHYK.wardrobe.filterByCategory('all')">
+                                All Items
+                            </button>
+                            <button class="category-filter" data-category="tops" onclick="CHYK.wardrobe.filterByCategory('tops')">
+                                <i class="fas fa-tshirt" aria-hidden="true"></i>
+                                Tops
+                            </button>
+                            <button class="category-filter" data-category="bottoms" onclick="CHYK.wardrobe.filterByCategory('bottoms')">
+                                <i class="fas fa-vest-patches" aria-hidden="true"></i>
+                                Bottoms
+                            </button>
+                            <button class="category-filter" data-category="shoes" onclick="CHYK.wardrobe.filterByCategory('shoes')">
+                                <i class="fas fa-shoe-prints" aria-hidden="true"></i>
+                                Shoes
+                            </button>
+                            <button class="category-filter" data-category="accessories" onclick="CHYK.wardrobe.filterByCategory('accessories')">
+                                <i class="fas fa-gem" aria-hidden="true"></i>
+                                Accessories
+                            </button>
+                            <button class="category-filter" data-category="outerwear" onclick="CHYK.wardrobe.filterByCategory('outerwear')">
+                                <i class="fas fa-vest" aria-hidden="true"></i>
+                                Outerwear
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Items Grid -->
+                    <div class="items-grid" id="items-grid">
+                        <!-- Items will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Outfit Builder Section -->
+                <div id="builder-section" class="section">
+                    <div class="section-header">
+                        <div class="section-title-area">
+                            <h2 class="content-title">
+                                <i class="fas fa-palette" aria-hidden="true"></i>
+                                Outfit Builder
+                            </h2>
+                            <p class="content-subtitle">Create and design your perfect outfits</p>
+                        </div>
+                        <div class="section-actions">
+                            <button class="btn btn-outline" onclick="CHYK.canvas && CHYK.canvas.clear()">
+                                <i class="fas fa-eraser" aria-hidden="true"></i>
+                                <span>Clear Canvas</span>
+                            </button>
+                            <button class="btn btn-primary" onclick="CHYK.canvas && CHYK.canvas.save()">
+                                <i class="fas fa-save" aria-hidden="true"></i>
+                                <span>Save Outfit</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="builder-layout">
+                        <!-- Canvas Area -->
+                        <div class="canvas-container">
+                            <div class="canvas-header">
+                                <h3>Design Canvas</h3>
+                                <p>Drag items from your closet to create outfits</p>
+                            </div>
+                            <div id="styling-canvas" class="styling-canvas">
+                                <div class="canvas-instructions">
+                                    <i class="fas fa-mouse-pointer" aria-hidden="true"></i>
+                                    <p>Drag clothing items here to start building your outfit</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Items Sidebar -->
+                        <div class="canvas-sidebar">
+                            <div class="sidebar-header">
+                                <h3>Your Items</h3>
+                                <p>Drag items to the canvas</p>
+                            </div>
+
+                            <div class="canvas-filters">
+                                <button class="category-filter active" data-category="all" onclick="CHYK.canvas && CHYK.canvas.filterItems('all')">
+                                    All
+                                </button>
+                                <button class="category-filter" data-category="tops" onclick="CHYK.canvas && CHYK.canvas.filterItems('tops')">
+                                    Tops
+                                </button>
+                                <button class="category-filter" data-category="bottoms" onclick="CHYK.canvas && CHYK.canvas.filterItems('bottoms')">
+                                    Bottoms
+                                </button>
+                                <button class="category-filter" data-category="shoes" onclick="CHYK.canvas && CHYK.canvas.filterItems('shoes')">
+                                    Shoes
+                                </button>
+                                <button class="category-filter" data-category="accessories" onclick="CHYK.canvas && CHYK.canvas.filterItems('accessories')">
+                                    Access.
+                                </button>
+                                <button class="category-filter" data-category="outerwear" onclick="CHYK.canvas && CHYK.canvas.filterItems('outerwear')">
+                                    Outer
+                                </button>
+                            </div>
+
+                            <div class="canvas-items-list" id="canvas-items-list">
+                                <!-- Canvas items will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Planner Section -->
+                <div id="planner-section" class="section">
+                    <!-- Planner content will be populated by JavaScript -->
+                </div>
+
+                <!-- Saved Outfits Section -->
+                <div id="outfits-section" class="section">
+                    <div class="section-header">
+                        <div class="section-title-area">
+                            <h2 class="content-title">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                Saved Outfits
+                            </h2>
+                            <p class="content-subtitle">Your collection of saved outfit combinations</p>
+                        </div>
+                    </div>
+
+                    <div class="outfits-grid" id="saved-outfits-grid">
+                        <!-- Saved outfits will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Favorites Section -->
+                <div id="favorites-section" class="section">
+                    <div class="section-header">
+                        <div class="section-title-area">
+                            <h2 class="content-title">
+                                <i class="fas fa-heart" aria-hidden="true"></i>
+                                Favorite Items
+                            </h2>
+                            <p class="content-subtitle">Your most loved wardrobe pieces</p>
+                        </div>
+                    </div>
+
+                    <div class="favorites-grid" id="favorites-grid">
+                        <!-- Favorite items will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Page -->
+        <div id="settings-page" class="page" style="display: none;">
+            <section class="page-content">
+                <div class="container">
+                    <h1 class="page-title serif">Settings</h1>
+                    <div class="settings-content">
+                        <div class="settings-section">
+                            <h2>Account Settings</h2>
+                            <div class="setting-item">
+                                <label>Email Notifications</label>
+                                <input type="checkbox" id="email-notifications" checked>
+                            </div>
+                            <div class="setting-item">
+                                <label>Outfit Reminders</label>
+                                <input type="checkbox" id="outfit-reminders" checked>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-section">
+                            <h2>Privacy</h2>
+                            <div class="setting-item">
+                                <label>Profile Visibility</label>
+                                <select id="profile-visibility">
+                                    <option value="public">Public</option>
+                                    <option value="friends">Friends Only</option>
+                                    <option value="private">Private</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="login-title" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" onclick="CHYK.hideModal('login')" aria-label="Close modal">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <header class="modal-header">
+                <h2 id="login-title" class="modal-title serif">Welcome Back</h2>
+                <p class="modal-subtitle">Sign in to access your virtual closet</p>
+            </header>
+            <form id="login-form" class="auth-form">
+                <div class="form-group">
+                    <label for="login-email">Email Address</label>
+                    <input type="email" id="login-email" name="email" required autocomplete="email">
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="password" required autocomplete="current-password">
+                </div>
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="remember">
+                        <span>Remember me</span>
+                    </label>
+                    <button type="button" class="link-button" onclick="CHYK.hideModal('login'); CHYK.showModal('forgot-password');">
+                        Forgot password?
+                    </button>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">
+                    <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
+                    <span>Sign In</span>
+                </button>
+            </form>
+            <div class="auth-footer">
+                <p>Don't have an account? 
+                    <button class="link-button" onclick="CHYK.hideModal('login'); CHYK.showModal('signup');">
+                        Sign up here
+                    </button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="signup-title" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" onclick="CHYK.hideModal('signup')" aria-label="Close modal">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <header class="modal-header">
+                <h2 id="signup-title" class="modal-title serif">Join CHYK</h2>
+                <p class="modal-subtitle">Create your account and start organizing your style</p>
+            </header>
+            <form id="signup-form" class="auth-form">
+                <div class="form-group">
+                    <label for="signup-email">Email Address</label>
+                    <input type="email" id="signup-email" name="email" required autocomplete="email">
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" name="password" required autocomplete="new-password">
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm">Confirm Password</label>
+                    <input type="password" id="signup-confirm" name="confirmPassword" required autocomplete="new-password">
+                </div>
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="terms" required>
+                        <span>I agree to the <a href="#" class="link">Terms of Service</a> and <a href="#" class="link">Privacy Policy</a></span>
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">
+                    <i class="fas fa-user-plus" aria-hidden="true"></i>
+                    <span>Create Account</span>
+                </button>
+            </form>
+            <div class="auth-footer">
+                <p>Already have an account? 
+                    <button class="link-button" onclick="CHYK.hideModal('signup'); CHYK.showModal('login');">
+                        Sign in here
+                    </button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgot-password-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="forgot-title" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" onclick="CHYK.hideModal('forgot-password')" aria-label="Close modal">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <header class="modal-header">
+                <h2 id="forgot-title" class="modal-title serif">Reset Password</h2>
+                <p class="modal-subtitle">Enter your email to receive reset instructions</p>
+            </header>
+            <form id="forgot-password-form" class="auth-form">
+                <div class="form-group">
+                    <label for="forgot-email">Email Address</label>
+                    <input type="email" id="forgot-email" name="email" required autocomplete="email">
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                    <span>Send Reset Instructions</span>
+                </button>
+            </form>
+            <div class="auth-footer">
+                <p>Remember your password? 
+                    <button class="link-button" onclick="CHYK.hideModal('forgot-password'); CHYK.showModal('login');">
+                        Sign in here
+                    </button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Modal -->
+    <div id="upload-modal" class="modal modal-large" role="dialog" aria-modal="true" aria-labelledby="upload-title" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" onclick="CHYK.hideModal('upload')" aria-label="Close modal">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <header class="modal-header">
+                <h2 id="upload-title" class="modal-title serif">Add New Item</h2>
+                <p class="modal-subtitle">Upload a photo and organize your wardrobe</p>
+            </header>
+            
+            <!-- File Upload Area -->
+            <div id="file-upload-area" class="upload-area">
+                <input type="file" id="file-input" accept="image/*" style="display: none;">
+                <div class="upload-content">
+                    <i class="fas fa-camera upload-icon" aria-hidden="true"></i>
+                    <div class="upload-text">
+                        Drag & drop an image or click to browse<br>
+                        <small>Supported formats: JPG, PNG, WEBP (Max 10MB)</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Form -->
+            <form id="upload-form" class="upload-form" style="display: none;">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="item-name">Item Name (Optional)</label>
+                        <input type="text" id="item-name" name="item-name" placeholder="e.g., Blue Cotton T-Shirt">
+                    </div>
+                    <div class="form-group">
+                        <label for="item-category">Category</label>
+                        <select id="item-category" name="item-category" required>
+                            <option value="tops">Tops</option>
+                            <option value="bottoms">Bottoms</option>
+                            <option value="shoes">Shoes</option>
+                            <option value="accessories">Accessories</option>
+                            <option value="outerwear">Outerwear</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="item-tags">Tags (Optional)</label>
+                    <input type="text" id="item-tags" name="item-tags" placeholder="e.g., casual, blue, summer (separate with commas)">
+                </div>
+                <div class="form-group">
+                    <label for="item-notes">Notes (Optional)</label>
+                    <textarea id="item-notes" name="item-notes" rows="3" placeholder="Add any additional notes about this item..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">
+                    <i class="fas fa-plus" aria-hidden="true"></i>
+                    <span>Add to Closet</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Save Outfit Modal -->
+    <div id="save-outfit-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="save-outfit-title" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" onclick="CHYK.hideModal('save-outfit')" aria-label="Close modal">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <header class="modal-header">
+                <h2 id="save-outfit-title" class="modal-title serif">Save Outfit</h2>
+                <p class="modal-subtitle">Give your outfit a name and organize it</p>
+            </header>
+            <form id="save-outfit-form" class="save-outfit-form">
+                <div class="form-group">
+                    <label for="outfit-name">Outfit Name</label>
+                    <input type="text" id="outfit-name" name="outfitName" required placeholder="e.g., Monday Work Look">
+                </div>
+                <div class="form-group">
+                    <label for="outfit-category">Category</label>
+                    <select id="outfit-category" name="category" required>
+                        <option value="work">Work</option>
+                        <option value="casual">Casual</option>
+                        <option value="evening">Evening</option>
+                        <option value="formal">Formal</option>
+                        <option value="sport">Sport</option>
+                        <option value="Custom">Custom</option>
+                    </select>
+                </div>
+                <div id="custom-category-group" class="form-group" style="display: none;">
+                    <label for="custom-category">Custom Category</label>
+                    <input type="text" id="custom-category" name="customCategory" placeholder="Enter custom category">
+                </div>
+                <div class="form-group">
+                    <label for="outfit-notes">Notes (Optional)</label>
+                    <textarea id="outfit-notes" name="notes" rows="3" placeholder="Add notes about this outfit..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">
+                    <i class="fas fa-save" aria-hidden="true"></i>
+                    <span>Save Outfit</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <i class="fas fa-closet" aria-hidden="true"></i>
+                        <span class="serif">CHYK</span>
+                    </div>
+                    <p>Your smart virtual closet for organized, stylish living.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>Product</h3>
+                        <a href="#features" data-page="features">Features</a>
+                        <a href="#" class="link">Pricing</a>
+                        <a href="#" class="link">Updates</a>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Company</h3>
+                        <a href="#about" data-page="about">About</a>
+                        <a href="#community" data-page="community">Community</a>
+                        <a href="#contact" data-page="contact">Contact</a>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Support</h3>
+                        <a href="#" class="link">Help Center</a>
+                        <a href="#" class="link">Privacy Policy</a>
+                        <a href="#" class="link">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CHYK. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="Twitter">
+                        <i class="fab fa-twitter" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Instagram">
+                        <i class="fab fa-instagram" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Facebook">
+                        <i class="fab fa-facebook" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="config.js"></script>
+    <script src="utils.js"></script>
+    <script src="error-handler.js"></script>
+    <script src="ui.js"></script>
+    <script src="modal.js"></script>
+    <script src="auth.js"></script>
+    <script src="wardrobe.js"></script>
+    <script src="canvas.js"></script>
+    <script src="planner-utilities.js"></script>
+    <script src="planner.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
